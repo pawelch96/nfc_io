@@ -11,12 +11,12 @@ enum NFCStatus {
 }
 
 class NfcData {
-  final String id;
-  final String content;
-  final String error;
-  final String statusMapper;
+  final String? id;
+  final String? content;
+  final String? error;
+  final String? statusMapper;
 
-  NFCStatus status;
+  NFCStatus? status = NFCStatus.none;
 
   NfcData({
     this.id,
@@ -64,8 +64,8 @@ class NfcIo {
   static const MethodChannel _channel = const MethodChannel('nfc_io');
   static const stream = const EventChannel('mv.fr.nfc_io.nfc_io');
 
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
+  static Future<String?> get platformVersion async {
+    final String? version = await _channel.invokeMethod('getPlatformVersion');
     return version;
   }
 
